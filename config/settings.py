@@ -22,14 +22,14 @@ ALLOWED_HOSTS = c('ALLOWED_HOSTS').split(',')
 
 # Application definition
 MY_APPS = [
+    'apps.comics',
+]
+
+THIRD_PARTY_APPS = [
     'rest_framework',
     'drf_yasg',
     'corsheaders',
     'django_rest_passwordreset',
-]
-
-THIRD_PARTY_APPS = [
-
 ]
 
 INSTALLED_APPS = [
@@ -139,7 +139,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # DJANGO REST FRAMEWORK's config
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'],
-    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
     'DEFAULT_DATETIME_FORMAT': '%d.%m.%Y %H:%M:%S',
     'DATE_FORMAT': '%d.%m.%Y',
     'DEFAULT_AUTHENTICATION_CLASSES': [
