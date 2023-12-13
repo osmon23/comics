@@ -53,6 +53,5 @@ class Rating(models.Model):
         return f'{self.user_id.username} gave {self.VALUE} to {self.comic_id.title}'
 
     class Meta:
-        unique_together = ('comic_id', 'user_id')
         verbose_name = _('Rating')
         verbose_name_plural = _('Ratings')

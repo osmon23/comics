@@ -1,7 +1,6 @@
-import os
 import contextlib
-from datetime import timedelta
 from pathlib import Path
+
 from decouple import config as c
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,7 +28,6 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     'drf_yasg',
     'corsheaders',
-    'django_rest_passwordreset',
 ]
 
 INSTALLED_APPS = [
@@ -152,51 +150,6 @@ REST_FRAMEWORK = {
 
 CORS_ALLOWED_ORIGINS = c('CORS_ALLOWED_ORIGINS').split(',')
 CORS_ALLOW_ALL_ORIGINS = c('CORS_ALLOW_ALL_ORIGINS', cast=bool)
-
-# AUTH_USER_MODEL = 'accounts.CustomUser'
-
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = c('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = c('EMAIL_HOST_PASSWORD')
-EMAIL_PORT = c('EMAIL_PORT', cast=int)
-EMAIL_USE_TLS = c('EMAIL_USE_TLS', cast=bool)
-EMAIL_USE_SSL = c('EMAIL_USE_SSL', cast=bool)
-
-DJANGO_REST_PASSWORDRESET_TOKEN_CONFIG = {
-    "CLASS": "django_rest_passwordreset.tokens.RandomStringTokenGenerator",
-    "OPTIONS": {
-        "min_length": 20,
-        "max_length": 20
-    }
-}
-
-# JWT
-SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=15),
-    "ROTATE_REFRESH_TOKENS": False,
-    "BLACKLIST_AFTER_ROTATION": False,
-    "UPDATE_LAST_LOGIN": True,
-    "ALGORITHM": "HS256",
-    "SIGNING_KEY": SECRET_KEY,
-    "VERIFYING_KEY": None,
-    "AUDIENCE": None,
-    "ISSUER": None,
-    "AUTH_HEADER_TYPES": (
-        "Bearer",
-    ),
-    "AUTH_HEADER_NAME": "HTTP_AUTHORIZATION",
-    "USER_ID_FIELD": "id",
-    "USER_ID_CLAIM": "user_id",
-    "USER_AUTHENTICATION_RULE": "rest_framework_simplejwt.authentication.default_user_authentication_rule",
-    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
-    "TOKEN_TYPE_CLAIM": "token_type",
-    "JTI_CLAIM": "jti",
-    "SLIDING_TOKEN_REFRESH_EXP_CLAIM": "refresh_exp",
-    "SLIDING_TOKEN_LIFETIME": timedelta(minutes=60),
-    "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=1),
-}
 
 with contextlib.suppress(ImportError):
     from .local_settings import *
